@@ -1,0 +1,51 @@
+create database bank_data;
+use bank_data;
+create table customer(
+    customer_id int auto_increment primary key ,
+    name varchar(200) not null ,
+    email varchar(200),
+    phone int not null
+
+);
+create table accounts(
+    acc_id int primary key ,
+    type varchar(50),
+    open_date date,
+    detail_info varchar(500)
+
+);
+create table transactions(
+   trade_id int primary key,
+   amount_money double,
+   date date,
+   detail varchar(500)
+);
+alter table accounts add column customer_number int;
+alter table accounts add foreign key (customer_number) references customer (customer_id);
+alter table transactions add column acc_id int;
+alter table transactions add foreign key (acc_id) references accounts (acc_id);
+alter table customer modify phone long;
+
+insert into customer value (1,'thinh','thinh1@mail.com',035562219993);
+insert into customer (name, email, phone) value ('thinh','thinh1@mail.com',035562219993);
+
+
+insert into customer (name, email, phone) value ('thinh2','thinh2@mail.com',035562219991);
+insert into customer (name, email, phone) value ('thinh3','thinh3@mail.com',035562219992);
+insert into customer (name, email, phone) value ('thinh4','thinh4@mail.com',035562219993);
+insert into customer (name, email, phone) value ('thinh5','thinh5@mail.com',035562219943);
+delete from customer where customer_id = 2;
+delete from customer where customer_id = 3;
+delete from customer where customer_id = 4;
+delete from customer where customer_id = 5;
+insert into accounts value (1,'vip','2007-12-01','NA',1);
+insert into accounts value (2,'vip','2020-12-02','NA',6);
+insert into accounts value (3,'vip','2020-12-03','NA',7);
+insert into accounts value (4,'vip','2020-12-04','NA',8);
+insert into accounts value (5,'vip','2020-12-05','NA',9);
+
+insert into transactions value (11111,5000,'2020-12-20','gui tien',1);
+insert into transactions value (22222,5000,'2020-12-20','gui tien',2);
+insert into transactions value (33333,5000,'2020-12-20','gui tien',3);
+insert into transactions value (44444,5000,'2020-12-20','gui tien',4);
+insert into transactions value (55555,5000,'2020-12-20','gui tien',5);
